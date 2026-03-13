@@ -1,0 +1,43 @@
+<div class="login-container">
+  <div class="login-image">
+    <img src="assets/login-image.jpg" alt="Flights" />
+  </div>
+
+  <div class="login-section">
+    <div class="login-card">
+      <h1>SuperFlights</h1>
+      <p class="subtitle">Inicia sesión en tu cuenta</p>
+
+      <form (ngSubmit)="onSubmit()">
+        <div class="input-group">
+          <label>Email</label>
+          <input
+            type="email"
+            [(ngModel)]="email"
+            name="email"
+            placeholder="correo@ejemplo.com"
+            required
+          />
+        </div>
+
+        <div class="input-group">
+          <label>Password</label>
+          <input
+            type="password"
+            [(ngModel)]="password"
+            name="password"
+            placeholder="••••••••"
+            required
+          />
+        </div>
+
+        <button type="submit" class="login-btn">Iniciar sesión</button>
+      </form>
+
+      <p class="register-text">
+        ¿No tienes cuenta?
+        <a routerLink="/register">Crear cuenta</a>
+      </p>
+    </div>
+  </div>
+</div>
