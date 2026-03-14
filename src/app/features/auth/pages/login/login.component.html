@@ -1,6 +1,6 @@
 <div class="login-container">
   <div class="login-image">
-    <img src="assets/login-image.jpg" alt="Flights" />
+    <img src="assets/images/vuelos.webp" alt="Flights" />
   </div>
 
   <div class="login-section">
@@ -8,20 +8,20 @@
       <h1>SuperFlights</h1>
       <p class="subtitle">Inicia sesión en tu cuenta</p>
 
-      <form (ngSubmit)="onSubmit()">
+      <form (ngSubmit)="login()">
         <div class="input-group">
-          <label>Email</label>
+          <label>Nombre de usuario</label>
           <input
-            type="email"
-            [(ngModel)]="email"
-            name="email"
-            placeholder="correo@ejemplo.com"
+            type="text"
+            [(ngModel)]="username"
+            name="username"
+            placeholder="Nombre de usuario"
             required
           />
         </div>
 
         <div class="input-group">
-          <label>Password</label>
+          <label>Contraseña</label>
           <input
             type="password"
             [(ngModel)]="password"

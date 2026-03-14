@@ -1,30 +1,31 @@
 import { Component } from "@angular/core";
-import { AuthService, LoginDto } from "../services/auth.service";
-import { Router } from "@angular/router";
+import { AuthService, LoginDto } from "../../services/auth.service";
+import { Router, RouterModule } from "@angular/router";
 import { FormsModule } from "@angular/forms";
 import { CommonModule } from "@angular/common";
 
 @Component({
     selector: 'app-login',
     standalone: true,
-    imports: [FormsModule, CommonModule],
+    imports: [FormsModule, CommonModule, RouterModule],
     templateUrl: './login.component.html',
     styleUrls: ['./login.component.css']
 })
 
 export class LoginComponent {
-    email = '';
+    username = '';
     password = ''
     errorMessage = '';
 
     constructor(private authService: AuthService, private router: Router) {}
 
-    onSubmit(): void {
-        const loginDto: LoginDto = {email: this.email, password: this.password};
+    login(): void {
+        const loginDto: LoginDto = {username: this.username, password: this.password};
         this.authService.login(loginDto).subscribe({
             next: (response) => {
                 this.authService.setToken(response.access_token);
-                this.router.navigate(['/flights']); // flights page after login
+                //this.router.navigate(['/flights']); // flights page after login
+                console.log('inicio de sesion')
             },
 
             error: (err) => {

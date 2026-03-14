@@ -1,0 +1,63 @@
+<div class="register-container">
+  <div class="register-image">
+    <img src="assets/images/vuelos.webp" alt="Flights" />
+  </div>
+
+  <div class="register-section">
+    <div class="register-card">
+      <h1>SuperFlights</h1>
+      <p class="subtitle">Regístrate</p>
+
+      <form (ngSubmit)="register()">
+        <div class="input-group">
+          <label>Nombre</label>
+          <input type="text" [(ngModel)]="name" name="name" placeholder="Nombre" required />
+        </div>
+
+        <div class="input-group">
+          <label>Nombre de usuario</label>
+          <input type="text" [(ngModel)]="username" name="username" placeholder="nombre usuario" required />
+        </div>
+
+        <div class="input-group">
+          <label>Correo electrónico</label>
+          <input
+            type="email"
+            [(ngModel)]="email"
+            name="email"
+            placeholder="correo@ejemplo.com"
+            required
+          />
+        </div>
+
+        <div class="input-group">
+          <label>Contraseña</label>
+          <input
+            type="password"
+            [(ngModel)]="password"
+            name="password"
+            placeholder="••••••••"
+            required
+          />
+        </div>
+
+        <div class="input-group">
+          <label>Confirmar contraseña</label>
+          <input
+            type="password"
+            [(ngModel)]="confirmPassword"
+            name="confirmPassword"
+            placeholder="••••••••"
+            required
+          />
+        </div>
+        <button type="submit" class="register-btn">Registrarse</button>
+      </form>
+
+      <p class="login-text">
+        ¿ya tienes una cuenta?
+        <a routerLink="/login">Iniciar sesión</a>
+      </p>
+    </div>
+  </div>
+</div>

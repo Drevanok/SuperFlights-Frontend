@@ -3,12 +3,23 @@ import { ApiService } from '../../../core/services/api.service';
 import { Observable } from 'rxjs';
 
 export interface LoginDto {
+  username: string;
+  password: string;
+}
+
+export interface RegisterDto {
+  name: string;
+  username: string;
   email: string;
   password: string;
 }
 
 export interface AuthResponse {
   access_token: string;
+}
+
+export interface RegisterResponse {
+  message: string;
 }
 
 @Injectable({
@@ -18,7 +29,11 @@ export class AuthService {
   constructor(private api: ApiService) {}
 
   login(loginDto: LoginDto): Observable<AuthResponse> {
-    return this.api.post<AuthResponse>('/auth/login', loginDto);
+    return this.api.post<AuthResponse>('/auth/signin', loginDto);
+  }
+
+  register(registerDto: RegisterDto): Observable<RegisterResponse> {
+    return this.api.post<RegisterResponse>('/auth/signup', registerDto);
   }
 
   logout(): void {
