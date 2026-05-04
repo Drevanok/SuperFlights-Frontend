@@ -1,0 +1,14 @@
+<h1>Flights</h1>
+
+<p>Total vuelos: {{ flights.length }}</p>
+
+<div *ngIf="loading">
+    <p>Cargando...</p>
+</div>
+
+<div *ngIf="!loading">
+    <div *ngFor="let flight of flights">
+        <p>{{ flight.destinationCity }}</p>
+        <p>{{ flight.pilot }}</p>
+    </div>
+</div>

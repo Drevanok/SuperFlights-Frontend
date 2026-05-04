@@ -1,0 +1,13 @@
+<div class="card">
+
+    <h3>{{ flight.destinationCity }}</h3>
+
+    <p>Piloto: {{ flight.pilot }}</p>
+    <p>Avión: {{ flight.airplane }}</p>
+    <p>Fecha: {{ flight.flightDate }}</p>
+
+    <button [routerLink]="['/flights', flight._id]">Ver</button>
+    <button [routerLink]="['/flights/edit', flight._id]">Editar</button>
+    <button (click)="delete()">Eliminar</button>
+
+</div>

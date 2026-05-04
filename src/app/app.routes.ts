@@ -9,11 +9,31 @@ export const routes: Routes = [
         component: LandingComponent,
     },
     {
-        path:'login',
+        path: 'login',
         component: LoginComponent,
     },
     {
         path: 'register',
         component: RegisterComponent,
+    },
+    {
+        path: 'flights',
+        loadComponent: () => import('./features/flights/pages/flight-list/flight-list.component')
+            .then(m => m.FlightListComponent)
+    },
+    {
+        path: 'flights/create',
+        loadComponent: () => import('./features/flights/pages/flight-create/flight-create.component')
+            .then(m => m.FlightCreateComponent)
+    },
+    {
+        path: 'flights/:id',
+        loadComponent: () => import('./features/flights/pages/flight-detail/flight-detail.component')
+            .then(m => m.FlightDetailComponent)
+    },
+    {
+        path: 'flights/edit/:id',
+        loadComponent: () => import('./features/flights/pages/flight-edit/flight-edit.component')
+            .then(m => m.FlightEditComponent)
     }
 ];

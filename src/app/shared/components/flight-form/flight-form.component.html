@@ -1,0 +1,13 @@
+<form (ngSubmit)="submit()">
+    
+    <input [(ngModel)]="flight.pilot" name="pilot" placeholder="Piloto" required>
+
+    <input [(ngModel)]="flight.airplane" name="airplane" placeholder="Avion" required>
+    
+    <input [(ngModel)]="flight.destinationCity" name="destinationCity" placeholder="Destino" required />
+    
+    <input [(ngModel)]="flight.flightDate" name="flightDate" type="date" required />
+
+    <button type="submit">Guardar</button>
+
+</form>

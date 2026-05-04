@@ -24,7 +24,7 @@ export class LoginComponent {
         this.authService.login(loginDto).subscribe({
             next: (response) => {
                 this.authService.setToken(response.access_token);
-                //this.router.navigate(['/flights']); // flights page after login
+                this.router.navigate(['/flights']); // flights page after login
                 console.log('inicio de sesion')
             },
 
