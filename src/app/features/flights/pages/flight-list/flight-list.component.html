@@ -1,14 +1,26 @@
 <h1>Flights</h1>
 
-<p>Total vuelos: {{ flights.length }}</p>
+@if(loading()){
 
-<div *ngIf="loading">
-    <p>Cargando...</p>
-</div>
+<p>Cargando...</p>
 
-<div *ngIf="!loading">
-    <div *ngFor="let flight of flights">
-        <p>{{ flight.destinationCity }}</p>
-        <p>{{ flight.pilot }}</p>
-    </div>
-</div>
+} @else if (errorMessage()){
+
+<p>{{errorMessage()}}</p>
+
+}
+
+@else if (flights().length === 0) {
+
+<p>No hay vuelos</p>
+
+} @else {
+
+@for (flight of flights(); track flight._id) {
+
+<app-flight-card [flight]="flight" (onDelete)="delete($event)">
+</app-flight-card>
+
+}
+
+}

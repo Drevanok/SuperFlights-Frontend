@@ -1,38 +1,53 @@
-import { Component, OnInit } from "@angular/core";
-import { CommonModule } from "@angular/common";
-import { FlightService } from "../../services/flight.service";
-import { Flight } from "../../models/flight.model";
-import { RouterModule } from "@angular/router";
-import { FlightCardComponent } from "../../../../shared/components/flight-card/flight-card.component";
-import { ChangeDetectorRef } from "@angular/core";
+import { Component, OnInit, signal } from '@angular/core';
+import { FlightService } from '../../services/flight.service';
+import { Flight } from '../../models/flight.model';
+import { RouterModule } from '@angular/router';
+import { FlightCardComponent } from '../../../../shared/components/flight-card/flight-card.component';
+
 @Component({
     selector: 'app-flight-list',
     standalone: true,
-    imports: [CommonModule, RouterModule, FlightCardComponent],
+    imports: [RouterModule, FlightCardComponent],
     templateUrl: './flight-list.component.html',
 })
-
 export class FlightListComponent implements OnInit {
-    flights: Flight[] = [];
-    loading = true;
 
-    constructor(private flightService: FlightService, private cdr: ChangeDetectorRef) { }
+    flights = signal<Flight[]>([]);
+    loading = signal<boolean>(true);
+    errorMessage = signal<string>('');
+
+    constructor(private flightService: FlightService) { }
 
     ngOnInit(): void {
+
         this.flightService.getFlights().subscribe({
             next: (data) => {
-                console.log(data)
-                this.flights = data;
-                this.loading = false;
+
+                console.log(data);
+
+                this.flights.set(data);
+
+                this.loading.set(false);
             },
 
-            error: () => this.loading = false
+            error: (err) => {
+                this.errorMessage.set(err.error?.message || 'Error loading flights');
+                this.loading.set(false);
+            }
         });
+
     }
 
     delete(id: string) {
+
         this.flightService.deleteFlight(id).subscribe(() => {
-            this.flights = this.flights.filter(f => f._id !== id)
-        })
+
+            this.flights.update(flights =>
+                flights.filter(flight => flight._id !== id)
+            );
+
+        });
+
     }
+
 }

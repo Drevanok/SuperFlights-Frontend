@@ -11,28 +11,28 @@
       <form (ngSubmit)="login()">
         <div class="input-group">
           <label>Nombre de usuario</label>
-          <input
-            type="text"
-            [(ngModel)]="username"
-            name="username"
-            placeholder="Nombre de usuario"
-            required
-          />
+          <input type="text" [ngModel]="username()" (ngModelChange)="username.set($event)" name="username"
+            placeholder="Nombre de usuario" required />
         </div>
 
         <div class="input-group">
           <label>Contraseña</label>
-          <input
-            type="password"
-            [(ngModel)]="password"
-            name="password"
-            placeholder="••••••••"
-            required
-          />
+          <input type="password" [ngModel]="password()" (ngModelChange)="password.set($event)" name="password"
+            placeholder="••••••••" required />
         </div>
 
-        <button type="submit" class="login-btn">Iniciar sesión</button>
+        <button type="submit" class="login-btn" [disabled]="loading()">
+          @if(loading()){
+          Iniciando...
+          }@else {
+          Iniciar Sesion
+          }
+        </button>
       </form>
+
+      @if(errorMessage()){
+      <p class="error-message">{{errorMessage()}}</p>
+      }
 
       <p class="register-text">
         ¿No tienes cuenta?
